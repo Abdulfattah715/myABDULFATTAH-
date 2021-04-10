@@ -1,24 +1,38 @@
-index.php
-  // <span style="color:red;"><</span>script type=<span style="color:red;">"</span>text/javascript<span style="color:red;">"></span>window.location = <span style="color:red;">"</span>https://SomeBadWebsite.com<span style="color:red;">"</span>;<span style="color:red;"><</span>/script<span style="color:red;">></span>
-  //
-  // This certainly would look strange on the page, but it would not be harmful
-  // to visitors
-  
-  $name = htmlspecialchars($row['name'],ENT_QUOTES);
-  $email = htmlspecialchars($row['email'],ENT_QUOTES);
-  $website = htmlspecialchars($row['website'],ENT_QUOTES);
-  $comment = htmlspecialchars($row['comment'],ENT_QUOTES);
-  
-  echo "  <div style='margin:30px 0px;'>
-      Name: $name<br />
-      Email: $email<br />
-      Website: $website<br />
-      Comment: $comment<br />
-      Timestamp: $timestamp
-    </div>
-  ";
-}
+<!DOCTYPE html>
+<head>
+<title>Home | Table</title>
+<link type="text/css" rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <h1>Dashboard</h1>
+  <table id="servers">
+    <thead>
+      <tr>
+        <th width="150">ID</th>
+        <th width="150">Name</th>
+        <th width="150">Last Name</th>
+        <th width="150">Row</th>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
 
-mysql_close($con);
+  <div class="log"></div>
+  <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+        // Code here
+          $.get('/getTable', function(result,fields) {
+          var rows = JSON.parse(result);
+          var row = rows[i];
+          console.log(rows);
+            for (i=0 ; i < rows.length ; i++){
+                $('#servers tbody').append('<tr><td>'+row.id+'</td><td>'+row.name+'</td><td>'+row.lastname+'</td><td>'+row.testtablecol+'</td></tr>');
+            }
+          });
+    });
+    </script>
+  <script type="text/javascript" src="js/script.js" />
+</body>
 
-?>
