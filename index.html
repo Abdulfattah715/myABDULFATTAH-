@@ -1,0 +1,24 @@
+index.php
+  // <span style="color:red;"><</span>script type=<span style="color:red;">"</span>text/javascript<span style="color:red;">"></span>window.location = <span style="color:red;">"</span>https://SomeBadWebsite.com<span style="color:red;">"</span>;<span style="color:red;"><</span>/script<span style="color:red;">></span>
+  //
+  // This certainly would look strange on the page, but it would not be harmful
+  // to visitors
+  
+  $name = htmlspecialchars($row['name'],ENT_QUOTES);
+  $email = htmlspecialchars($row['email'],ENT_QUOTES);
+  $website = htmlspecialchars($row['website'],ENT_QUOTES);
+  $comment = htmlspecialchars($row['comment'],ENT_QUOTES);
+  
+  echo "  <div style='margin:30px 0px;'>
+      Name: $name<br />
+      Email: $email<br />
+      Website: $website<br />
+      Comment: $comment<br />
+      Timestamp: $timestamp
+    </div>
+  ";
+}
+
+mysql_close($con);
+
+?>
